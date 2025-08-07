@@ -33,23 +33,19 @@ public class FlexibleCompanyDemo {
         emps[2] = new MereClerk("영희", 100);
         emps[3] = new Manager("둘리", 200, "HR");
         
-        System.out.println(mereClerk1.getName() + "의 현재 월급은 " + mereClerk1.getSalary() + " 만원 입니다.");
-        System.out.println(mereClerk2.getName() + "의 현재 월급은 " + mereClerk2.getSalary() + " 만원 입니다.");
-        System.out.println(manager.getName() + "의 현재 월급은 " + manager.getSalary() + " 만원 입니다.");
-
-        System.out.println("");
+        System.out.println("현재 월급입니다.");
+        for(Employee emp : emps) {
+        	System.out.println(emp.getName() + "의 현재 월급은 " + emp.getSalary() + " 만원 입니다.");
+        	emp.manageSalary(10);
+        }
+        
+        System.out.println("올린 후의 월급입니다.");  
+        for (Employee emp : emps) {
+            System.out.println(emp.getName() + "의 현재 월급은 " + emp.getSalary() + " 만원 입니다.");			
+		}
         
         
-        System.out.println("올린 후의 월급입니다.");
-        
-        mereClerk1.manageSalary(10);
-        System.out.println(mereClerk1.getName() + "의 현재 월급은 " + mereClerk1.getSalary() + " 만원 입니다.");
-        
-        mereClerk2.manageSalary(10);
-        System.out.println(mereClerk2.getName() + "의 현재 월급은 " + mereClerk2.getSalary() + " 만원 입니다.");
-        
-        manager.manageSalary(10);
-        System.out.println(manager.getName() + "의 현재 월급은 " + manager.getSalary() + " 만원 입니다.");
+      
         
    }
 }

@@ -7,6 +7,11 @@ public class MereClerk extends Employee {
     	super(name, salary); //부모의 생성자를 불러줌 
     }
     
+    /*
+     * 오버라이딩 규칙은 부모가 상속해준 메서드 Signature(선언부)가 반드시 같아야 한다.
+     * @Override 어노테이션은 오버라이딩 규칙을 컴파일 타임에 체크해준다.
+     */
+    @Override
     public void manageSalary(double rate) {
         salary = salary+ salary*(rate/100);
     }
