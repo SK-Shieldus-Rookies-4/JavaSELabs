@@ -19,9 +19,9 @@ public class FlexibleCompanyDemo {
         System.out.println(itMgr.getSalary());
         
         //Manager(자식)가 가진 getDept() 메서드 호출하기
-        Manager itMgr2 = (Manager)itMgr;
+        Manager itMgr2 = (Manager)itMgr; //형변환 후 대입 시킴 
         System.out.println(itMgr2.getDept()); 
-        //((Manager)itMgr).getDept();
+        //((Manager)itMgr).getDept(); //대입없이 바로 사용 
         
         
         //Heterogeneous Collection  Employee 타입의 배열의 선언하기
@@ -46,7 +46,7 @@ public class FlexibleCompanyDemo {
 
 	public static void printEmployInfo(Employee[] emps) {
 		for(Employee emp: emps) { 
-			//emp가 Manager객체로 부터 만들어진 instance 인지를 체크하는 연산자
+			//emp가 Manager객체로 부터 만들어진 instance 인지를 체크하는 연산자 => instanceof
 			if(emp instanceof Manager) {
 				//((Manager)emp).getDept();
 				System.out.print("관리자 부서명 = " + ((Manager)emp).getDept() + " ");
