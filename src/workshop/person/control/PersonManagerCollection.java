@@ -21,20 +21,19 @@ public class PersonManagerCollection {
 		
 		PersonManagerCollection personMgr = new PersonManagerCollection();
 		
-		//배열 선언 및 초기화
-		PersonEntity[] persons = new PersonEntity[10];
+		//리스트로 변경 
 		List<PersonEntity> personList = new ArrayList<>();
 		
 		//persons 변수는 PersonEntity[] 타입이고, persons[0]은 PersonEntity 타입이다.
 		personMgr.fillPersons(personList);
 		
 		personMgr.printTitle("인물정보 조회시스템");
-		personMgr.showPerson(persons);
+		personMgr.showPerson(personList);
 		
-		String message = String.format("성별 : %s (은)는   %d 명 입니다.", gender, personMgr.findByGender(persons, gender));
+		String message = String.format("성별 : %s (은)는   %d 명 입니다.", gender, personMgr.findByGender(personList, gender));
 		System.out.println(message);
 		
-		personMgr.showPerson(persons, name);
+		personMgr.showPerson(personList, name);
 		
 		scanner.close();
 			
