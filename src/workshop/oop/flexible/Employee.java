@@ -1,13 +1,20 @@
 package workshop.oop.flexible;
 
-public class Employee {
+public class Employee extends Object {
 
-	protected String name;
+	private String name;
 	protected double salary;
 
 	public Employee() {
-		super();
+//		super(); //Object 꺼를 부르는 것 
 	}
+	
+	public Employee(String name, double salary) {
+		super();
+		this.name = name;
+		this.salary = salary;
+	}
+
 
 	public String getName() {
 	    return this.name;
