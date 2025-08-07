@@ -1,27 +1,79 @@
 package workshop.person.control;
 
+import java.util.Scanner;
+
 import workshop.person.entity.PersonEntity;
 
 public class PersonManager {
 
 	public static void main(String[] args) {
+		System.out.println("==> 성별 정보를 입력하세요! ");
+		//Scanner 객체 생성 
+		Scanner scanner = new Scanner(System.in);
+		String inputValue = scanner.next();
+		char gender = inputValue.charAt(0); //String => char
+		
+		System.out.println("==>이름을 입력하세요! ");
+		String name = scanner.next();
+		System.out.println(String.format("==> 입력하신 성별은 %s, 이름은 %s", gender, name) + "\n");
+		
 		PersonManager personMgr = new PersonManager();
 		
-		personMgr.printTitle("인물정보 조회시스템");
-	
 		//배열 선언 및 초기화
 		PersonEntity[] persons = new PersonEntity[10];
 		//persons 변수는 PersonEntity[] 타입이고, persons[0]은 PersonEntity 타입이다.
-		fillPersons(persons);
+		personMgr.fillPersons(persons);
+		
+		personMgr.printTitle("인물정보 조회시스템");
+		personMgr.showPerson(persons);
+		
+		String message = String.format("성별 : %s (은)는   %d 명 입니다.", gender, personMgr.findByGender(persons, gender));
+		System.out.println(message);
+		
+		personMgr.showPerson(persons, name);
+		
+		scanner.close();
+			
+//		//Argument로 받는 방법
+//		char gender = '여';
+//		String message = String.format("성별 : %s (은)는   %d 명 입니다.", gender, personMgr.findByGender(persons, gender));
+//		System.out.println(message);
 
-		//for loop을 순회하면서 (향상된 for문)
+	}
+	
+	public void showPerson(PersonEntity[] persons, String name) {
 		for(PersonEntity person : persons) {
-			System.out.println(person.getName() + " " + person.getGender());
+			if(person.getName().equals(name)) {
+				System.out.println("[이름] " + person.getName());
+				System.out.println("[성별] " + person.getGender());
+				System.out.println("[전화번호] " + person.getPhone());
+				System.out.println("[주소] " + person.getAddress());
+				break;
+			}
 		}
 		
 	}
+	
+	public int findByGender(PersonEntity[] persons, char gender) {
+		int genderCnt = 0; //count반환 
+		for(PersonEntity person : persons) {
+			if(person.getGender() == gender) {
+				genderCnt++;
+			}
+		}
+		return genderCnt;
+		
+	}
 
-	public static void fillPersons(PersonEntity[] persons) {
+	public void showPerson(PersonEntity[] persons) {
+		//for loop을 순회하면서 (향상된 for문)
+		for(PersonEntity person : persons) {
+			System.out.println("[이름] " + person.getName() + "\t [성별] " + person.getGender() + "\t [전화번호] " + person.getPhone());
+			
+		}
+	}
+
+	public void fillPersons(PersonEntity[] persons) {
 		persons[0] = new PersonEntity("이성호","7212121028102", "인천 계양구", "032-392-2932");
 		persons[1] = new PersonEntity("김하늘","7302132363217", "서울 강동구", "02-362-1932");
 		persons[2] = new PersonEntity("박영수","7503111233201", "서울 성북구", "02-887-1542");
@@ -36,6 +88,7 @@ public class PersonManager {
 	
 	public void printTitle(String title) {
 		System.out.println("@@@@ " + title + " @@@@");
+		System.out.println("");
 	}
 
 }
